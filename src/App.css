@@ -529,7 +529,8 @@ h2 {
   align-items: center;
   justify-content: center;
   padding: 24px 20px;
-  border-top: 1px solid var(--border-color);
+  background: var(--secondary);
+  border-top: 1px solid var(--border);
 }
 
 .site-footer .link {
