@@ -87,16 +87,15 @@ export function SiteHeader({
   onThemeChange,
   onLanguageChange,
 }: SiteHeaderProps) {
-  const [activeNavigationItem, setActiveNavigationItem] = useState('home')
+  const [activeNavigationItem, setActiveNavigationItem] = useState<string | null>(null)
   const navigationItems = [
-    { id: 'home', label: copy.home, href: '#' },
     { id: 'lessons', label: copy.lessons, href: '#' },
     { id: 'exercises', label: copy.exercises, href: '#' },
   ]
 
   return (
     <header className="site-header">
-      <HomePageLink homeLabel={copy.home} />
+      <HomePageLink />
 
       <nav className="primary-navigation" aria-label={copy.mainNavigation}>
         <ul>

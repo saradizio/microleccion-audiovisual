@@ -2,7 +2,6 @@ export type Language = 'es' | 'en' | 'it' | 'ca'
 
 export type Translation = {
   pageTitle: string
-  home: string
   lessons: string
   exercises: string
   contact: string
@@ -35,7 +34,6 @@ export type Translation = {
 export const translations: Record<Language, Translation> = {
   es: {
     pageTitle: '{lesson} {lessonNumber} | {lessonTitle} | {siteName}',
-    home: 'Inicio',
     lessons: 'Lecciones',
     exercises: 'Ejercicios',
     contact: 'Contacto',
@@ -72,7 +70,6 @@ export const translations: Record<Language, Translation> = {
   },
   en: {
     pageTitle: '{lesson} {lessonNumber} | {lessonTitle} | {siteName}',
-    home: 'Home',
     lessons: 'Lessons',
     exercises: 'Exercises',
     contact: 'Contact',
@@ -109,7 +106,6 @@ export const translations: Record<Language, Translation> = {
   },
   it: {
     pageTitle: '{lesson} {lessonNumber} | {lessonTitle} | {siteName}',
-    home: 'Home',
     lessons: 'Lezioni',
     exercises: 'Esercizi',
     contact: 'Contatti',
@@ -146,7 +142,6 @@ export const translations: Record<Language, Translation> = {
   },
   ca: {
     pageTitle: '{lesson} {lessonNumber} | {lessonTitle} | {siteName}',
-    home: 'Inici',
     lessons: 'Lliçons',
     exercises: 'Exercicis',
     contact: 'Contacte',

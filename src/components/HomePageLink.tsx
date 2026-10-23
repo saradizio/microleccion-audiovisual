@@ -1,14 +1,10 @@
 import homeLogo from '../assets/home-logo.svg?no-inline'
 import { Link } from './ui/Link'
 
-type HomePageLinkProps = {
-  homeLabel: string
-}
-
-export function HomePageLink({ homeLabel }: HomePageLinkProps) {
+export function HomePageLink() {
   return (
     <Link
-      aria-label={`Hola ELE — ${homeLabel}`}
+      aria-label="Hola ELE"
       className="brand"
       href="#"
       isActive={false}
