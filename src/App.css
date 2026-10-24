@@ -165,7 +165,8 @@ select:focus-visible {
   list-style: none;
 }
 
-.primary-navigation .link {
+.primary-navigation .link,
+.ds-link-states--header .ds-state-sample {
   font-weight: 500;
   padding: 12px 14px;
 }
@@ -250,6 +251,10 @@ select:focus-visible {
 
 .select:not(:open):hover {
   background: var(--muted);
+}
+
+.select-control:has(.select-label:hover) .language-select {
+  background: var(--card);
 }
 
 .language-select {
@@ -671,6 +676,12 @@ h2 {
   display: none;
 }
 
+.ds-foundations {
+  padding-top: 24px;
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
 .app[data-theme='dark'] .ds-palette-theme--light {
   display: none;
 }
@@ -893,7 +904,7 @@ h2 {
 }
 
 .ds-foundations {
-  margin-top: 28px;
+  margin-top: 24px;
 }
 
 .ds-foundations .ds-foundations-heading {
@@ -1202,14 +1213,12 @@ h2 {
 }
 
 .ds-link-states--lesson .ds-state-sample {
+  display: grid;
   width: 100%;
   min-width: 0;
   max-width: none;
   flex: initial;
-}
-
-.ds-link-states--lesson .ds-state-sample.is-focus {
-  outline-offset: 2px;
+  padding: 16px;
 }
 
 .ds-component-note {
@@ -1268,16 +1277,12 @@ h2 {
   margin: 0;
 }
 
-.ds-transcript-demo .transcript-expanded {
-  align-items: stretch;
+.ds-transcript-demo + .ds-component-note {
+  margin-top: 16px;
 }
 
 .ds-transcript-demo .transcript-content {
   background: var(--card);
-}
-
-.ds-transcript-demo .transcript-hide-button {
-  align-self: center;
 }
 
 .ds-access-list {
@@ -1353,7 +1358,8 @@ h2 {
     gap: 12px;
   }
 
-  .primary-navigation .link {
+  .primary-navigation .link,
+  .ds-link-states--header .ds-state-sample {
     padding: 10px 12px;
   }
 
