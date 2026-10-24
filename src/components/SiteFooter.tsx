@@ -17,7 +17,10 @@ const footerLinks: {
   { key: 'privacy', href: '#' },
   { key: 'legalNotice', href: '#' },
   { key: 'help', href: '#' },
-  { key: 'designSystem', href: `${import.meta.env.BASE_URL}#/sistema-de-diseno` },
+  {
+    key: 'designSystem',
+    href: `${import.meta.env.BASE_URL}sistema-de-diseno`,
+  },
 ]
 
 export function SiteFooter({ copy, isDesignSystem = false }: SiteFooterProps) {

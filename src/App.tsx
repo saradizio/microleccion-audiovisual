@@ -9,20 +9,24 @@ import { DesignSystem } from './components/DesignSystem'
 
 const LESSON_NUMBER = 3
 const SITE_NAME = 'Hola ELE'
+const DESIGN_SYSTEM_PATH = new URL(
+  'sistema-de-diseno',
+  `${window.location.origin}${import.meta.env.BASE_URL}`,
+).pathname
 
 function App() {
   const [theme, setTheme] = useState<Theme>('light')
   const [language, setLanguage] = useState<Language>('es')
   const [isDesignSystem, setIsDesignSystem] = useState(
-    window.location.hash === '#/sistema-de-diseno',
+    window.location.pathname === DESIGN_SYSTEM_PATH,
   )
   const copy = translations[language]
 
   useEffect(() => {
     const updatePage = () =>
-      setIsDesignSystem(window.location.hash === '#/sistema-de-diseno')
-    window.addEventListener('hashchange', updatePage)
-    return () => window.removeEventListener('hashchange', updatePage)
+      setIsDesignSystem(window.location.pathname === DESIGN_SYSTEM_PATH)
+    window.addEventListener('popstate', updatePage)
+    return () => window.removeEventListener('popstate', updatePage)
   }, [])
 
   useEffect(() => {

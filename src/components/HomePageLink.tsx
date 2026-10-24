@@ -6,7 +6,7 @@ export function HomePageLink() {
     <Link
       aria-label="Hola ELE"
       className="brand"
-      href="#"
+      href={import.meta.env.BASE_URL}
       isActive={false}
     >
       <svg
