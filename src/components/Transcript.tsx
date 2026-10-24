@@ -13,6 +13,8 @@ type TranscriptProps = {
   id: string
   transcript: string
   copy: TranscriptLabels
+  headingLevel?: 2 | 3
+  initiallyVisible?: boolean
 }
 
 function renderTranscript(text: string): ReactNode[] {
@@ -29,8 +31,15 @@ function renderTranscript(text: string): ReactNode[] {
   })
 }
 
-export function Transcript({ id, transcript, copy }: TranscriptProps) {
-  const [isVisible, setIsVisible] = useState(false)
+export function Transcript({
+  id,
+  transcript,
+  copy,
+  headingLevel = 2,
+  initiallyVisible = false,
+}: TranscriptProps) {
+  const [isVisible, setIsVisible] = useState(initiallyVisible)
+  const Heading = headingLevel === 3 ? 'h3' : 'h2'
   const showButtonRef = useRef<HTMLButtonElement>(null)
   const hideButtonRef = useRef<HTMLButtonElement>(null)
   const previousVisibility = useRef(isVisible)
@@ -59,7 +68,7 @@ export function Transcript({ id, transcript, copy }: TranscriptProps) {
           inert={!isVisible}
         >
           <div className="transcript-content">
-            <h2>{copy.transcriptTitle}</h2>
+            <Heading>{copy.transcriptTitle}</Heading>
             <p>{renderTranscript(transcript)}</p>
           </div>
         </div>

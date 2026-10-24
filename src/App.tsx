@@ -5,6 +5,7 @@ import { LessonNavigation } from './components/LessonNavigation'
 import { SiteFooter } from './components/SiteFooter'
 import { SiteHeader, type Theme } from './components/SiteHeader'
 import { Transcript } from './components/Transcript'
+import { DesignSystem } from './components/DesignSystem'
 
 const LESSON_NUMBER = 3
 const SITE_NAME = 'Hola ELE'
@@ -12,16 +13,28 @@ const SITE_NAME = 'Hola ELE'
 function App() {
   const [theme, setTheme] = useState<Theme>('light')
   const [language, setLanguage] = useState<Language>('es')
+  const [isDesignSystem, setIsDesignSystem] = useState(
+    window.location.hash === '#/sistema-de-diseno',
+  )
   const copy = translations[language]
 
   useEffect(() => {
+    const updatePage = () =>
+      setIsDesignSystem(window.location.hash === '#/sistema-de-diseno')
+    window.addEventListener('hashchange', updatePage)
+    return () => window.removeEventListener('hashchange', updatePage)
+  }, [])
+
+  useEffect(() => {
     document.documentElement.lang = language
-    document.title = copy.pageTitle
-      .replace('{lesson}', copy.lesson)
-      .replace('{lessonNumber}', String(LESSON_NUMBER))
-      .replace('{lessonTitle}', copy.lessonTitle)
-      .replace('{siteName}', SITE_NAME)
-  }, [copy.lesson, copy.lessonTitle, copy.pageTitle, language])
+    document.title = isDesignSystem
+      ? `${copy.designSystem} | ${SITE_NAME}`
+      : copy.pageTitle
+          .replace('{lesson}', copy.lesson)
+          .replace('{lessonNumber}', String(LESSON_NUMBER))
+          .replace('{lessonTitle}', copy.lessonTitle)
+          .replace('{siteName}', SITE_NAME)
+  }, [copy.designSystem, copy.lesson, copy.lessonTitle, copy.pageTitle, isDesignSystem, language])
 
   return (
     <div className="app" data-theme={theme}>
@@ -37,8 +50,15 @@ function App() {
         onLanguageChange={setLanguage}
       />
 
-      <main className="main-content" id="inicio">
-        <article className="lesson" aria-labelledby="lesson-title">
+      {isDesignSystem ? (
+        <DesignSystem
+          copy={copy.designSystemPage}
+          language={language}
+          languageName={copy.languages[language]}
+        />
+      ) : (
+        <main className="main-content" id="inicio">
+          <article className="lesson" aria-labelledby="lesson-title">
           <header className="lesson-heading" id="lecciones">
             <p
               className="lesson-eyebrow"
@@ -72,10 +92,11 @@ function App() {
             copy={copy}
           />
           <LessonNavigation copy={copy} />
-        </article>
-      </main>
+          </article>
+        </main>
+      )}
 
-      <SiteFooter copy={copy} />
+      <SiteFooter copy={copy} isDesignSystem={isDesignSystem} />
     </div>
   )
 }
